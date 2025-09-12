@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class OrderRequestDto {
     private Long id;
-    private List<OrderRequestItemDto> orderItem;  // match entity field
-    private Double price;                         // match entity field
+    private List<OrderRequestItemDto> orderItem;
+    private Double price;
 }

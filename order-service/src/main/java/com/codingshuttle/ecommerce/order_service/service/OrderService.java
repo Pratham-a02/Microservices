@@ -1,5 +1,6 @@
 package com.codingshuttle.ecommerce.order_service.service;
 
+import com.codingshuttle.ecommerce.order_service.clients.InventoryOpenFeignClient;
 import com.codingshuttle.ecommerce.order_service.dto.OrderRequestDto;
 import com.codingshuttle.ecommerce.order_service.entity.Orders;
 import com.codingshuttle.ecommerce.order_service.repository.OrderRepository;
@@ -18,6 +19,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ModelMapper modelMapper;
+    private final InventoryOpenFeignClient inventoryOpenFeignClient;
 
     public List<OrderRequestDto> getAllOrders(){
         log.info("Fetching all orders");
@@ -30,4 +32,8 @@ public class OrderService {
         Orders order = orderRepository.findById(id).orElseThrow(()-> new RuntimeException("Order not found"));
         return modelMapper.map(order,OrderRequestDto.class);
     }
+
+//    public OrderRequestDto createOrder(OrderRequestDto orderRequestDto) {
+//        Double totalPrice = inventoryOpenFeignClient.reduceStocks(orderRequestDto);
+//    }
 }
